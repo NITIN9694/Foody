@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foody/Screens/HomePage/HomeWidget/FoodPageBody.dart';
 import 'package:foody/Utils/Appcolor.dart';
+import 'package:foody/Utils/Dimensions.dart';
 import 'package:foody/Widget/BigText.dart';
 import 'package:foody/Widget/SmallText.dart';
 
@@ -14,13 +15,16 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    print("Height " + MediaQuery.of(context).size.height.toString());
     return Scaffold(
       body: Column(
         children: [
           Container(
               child: Container(
-            margin: EdgeInsets.only(top: 45, bottom: 15),
-            padding: EdgeInsets.only(left: 20, right: 20),
+            margin: EdgeInsets.only(
+                top: AppDimensions.height45, bottom: AppDimensions.height15),
+            padding: EdgeInsets.only(
+                left: AppDimensions.width20, right: AppDimensions.width20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -43,10 +47,11 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 Container(
-                    height: 45,
-                    width: 45,
+                    height: AppDimensions.height45,
+                    width: AppDimensions.height45,
                     child: Icon(
                       Icons.search,
+                      size: AppDimensions.icon24,
                       color: Colors.white,
                     ),
                     decoration: BoxDecoration(
@@ -56,7 +61,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           )),
-          FoodPageBody()
+          Expanded(child: SingleChildScrollView(child: FoodPageBody()))
         ],
       ),
     );

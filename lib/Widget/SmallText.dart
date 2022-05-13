@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foody/Utils/Dimensions.dart';
 
 class SmallText extends StatelessWidget {
   final Color? color;
@@ -10,7 +11,7 @@ class SmallText extends StatelessWidget {
       {Key? key,
       this.color,
       required this.text,
-      this.size = 12,
+      this.size = 0,
       this.height = 1.2})
       : super(key: key);
   @override
@@ -19,7 +20,7 @@ class SmallText extends StatelessWidget {
       text,
       maxLines: 1,
       style: TextStyle(
-          fontSize: size,
+          fontSize: size == 0 ? AppDimensions.font12 : size,
           height: height,
           color: color,
           fontWeight: FontWeight.w400),

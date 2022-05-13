@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foody/Utils/Appcolor.dart';
+import 'package:foody/Utils/Dimensions.dart';
 import 'package:foody/Widget/SmallText.dart';
 
 class Icon_and_Text extends StatelessWidget {
@@ -22,6 +23,7 @@ class Icon_and_Text extends StatelessWidget {
         Icon(
           icon,
           color: iconColor,
+          size: AppDimensions.height15,
         ),
         SizedBox(
           width: 5,
@@ -29,7 +31,7 @@ class Icon_and_Text extends StatelessWidget {
         SmallText(
           text: text,
           color: AppColors.textcolor,
-          size: 12,
+          size: AppDimensions.font10,
         )
       ],
     );
