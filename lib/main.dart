@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foody/Screens/FoodDetail/FoodDetail.dart';
+import 'package:foody/Screens/FoodDetail/recommendedFoodDetail.dart';
 import 'package:foody/Screens/HomePage/Homepage.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Foody',
       theme: ThemeData(),
-      home: FoodDetail(),
+      home: HomePage(),
     );
   }
 }

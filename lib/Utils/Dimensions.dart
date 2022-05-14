@@ -24,6 +24,8 @@ class AppDimensions {
   static double font20 = screenHeight / 42.2;
   static double font12 = screenHeight / 60;
   static double font10 = screenHeight / 65;
+  static double font26 = screenHeight / 32.46;
+  static double font16 = screenHeight / 52.76;
 
   static double radius20 = screenHeight / 42.2;
   static double radius30 = screenHeight / 28.1;
@@ -37,4 +39,6 @@ class AppDimensions {
 
   static double popularFoodimgSize = screenHeight / 2.14;
   static double iconSize16 = screenHeight / 52.75;
+
+  static double bottomHeightBar = screenHeight / 7.03;
 }
