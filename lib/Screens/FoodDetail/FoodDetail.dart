@@ -1,18 +1,28 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:foody/Controller/PopularProductController.dart';
 import 'package:foody/Screens/FoodDetail/FoodDetailesWidget/expanded_text_widget.dart';
 import 'package:foody/Screens/HomePage/HomeWidget/Icon_and_text_widaget.dart';
+import 'package:foody/Screens/HomePage/Homepage.dart';
 import 'package:foody/Utils/AppColumn.dart';
 import 'package:foody/Utils/Appcolor.dart';
 import 'package:foody/Utils/Dimensions.dart';
 import 'package:foody/Widget/AppIcon.dart';
 import 'package:foody/Widget/BigText.dart';
 import 'package:foody/Widget/SmallText.dart';
+import 'package:get/get.dart';
 
 class FoodDetail extends StatelessWidget {
-  const FoodDetail({Key? key}) : super(key: key);
+  int pageId;
+  FoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
+    log(pageId.toString());
+    log(product["title"].toString());
     return SafeArea(
         child: Scaffold(
       body: Stack(children: [
@@ -28,8 +38,8 @@ class FoodDetail extends StatelessWidget {
                   image: DecorationImage(
                       fit: BoxFit.cover,
                       // ignore: prefer_const_constructors
-                      image: AssetImage(
-                        "assets/pizza.jpg",
+                      image: NetworkImage(
+                        product["image"],
                       ))),
             )),
         Positioned(
@@ -39,10 +49,18 @@ class FoodDetail extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              AppIcon(
-                iconData: Icons.arrow_back_ios,
+              GestureDetector(
+                onTap: () {
+                  Get.to(HomePage());
+                },
+                child: AppIcon(
+                  iconData: Icons.arrow_back_ios,
+                ),
               ),
-              AppIcon(iconData: Icons.shopping_cart_checkout_outlined)
+              GestureDetector(
+                  onTap: () {},
+                  child:
+                      AppIcon(iconData: Icons.shopping_cart_checkout_outlined))
             ],
           ),
         ),
@@ -65,7 +83,7 @@ class FoodDetail extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppColumn(
-                    text: "Chinese",
+                    text: product["title"].toString(),
                   ),
                   SizedBox(
                     height: AppDimensions.heigth20,
@@ -74,8 +92,7 @@ class FoodDetail extends StatelessWidget {
                   Expanded(
                     child: SingleChildScrollView(
                       child: ExpandebleTextWidget(
-                          text:
-                              "ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnls bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.snigedbofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.snigedsd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged."),
+                          text: product["description"].toString()),
                     ),
                   )
                 ],
@@ -127,7 +144,7 @@ class FoodDetail extends StatelessWidget {
                     left: AppDimensions.width10,
                     right: AppDimensions.width10),
                 child: BigText(
-                  text: "\$18 Add to cart",
+                  text: product["price"].toString(),
                   color: Colors.white,
                 ),
                 decoration: BoxDecoration(

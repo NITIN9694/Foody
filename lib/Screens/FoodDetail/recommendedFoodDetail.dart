@@ -1,13 +1,19 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:foody/Controller/PopularProductController.dart';
 import 'package:foody/Screens/FoodDetail/FoodDetailesWidget/expanded_text_widget.dart';
 import 'package:foody/Utils/Appcolor.dart';
 import 'package:foody/Utils/Dimensions.dart';
+import 'package:foody/Utils/Routes.dart';
 import 'package:foody/Widget/AppIcon.dart';
 import 'package:foody/Widget/BigText.dart';
+import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class recommendedFoodDetail extends StatefulWidget {
-  const recommendedFoodDetail({Key? key}) : super(key: key);
+  int pageid;
+  recommendedFoodDetail({Key? key, required this.pageid}) : super(key: key);
 
   @override
   State<recommendedFoodDetail> createState() => _recommendedFoodDetailState();
@@ -16,6 +22,10 @@ class recommendedFoodDetail extends StatefulWidget {
 class _recommendedFoodDetailState extends State<recommendedFoodDetail> {
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[widget.pageid];
+    log(widget.pageid.toString());
+    log(product["title"].toString());
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -23,11 +33,16 @@ class _recommendedFoodDetailState extends State<recommendedFoodDetail> {
           scrollDirection: Axis.vertical,
           slivers: [
             SliverAppBar(
+              automaticallyImplyLeading: false,
               toolbarHeight: 90,
               title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    AppIcon(iconData: Icons.clear),
+                    InkWell(
+                        onTap: () {
+                          Get.toNamed(RouteHelper.initial);
+                        },
+                        child: AppIcon(iconData: Icons.clear)),
                     AppIcon(iconData: Icons.shopping_cart_outlined)
                   ]),
               bottom: PreferredSize(
@@ -40,7 +55,7 @@ class _recommendedFoodDetailState extends State<recommendedFoodDetail> {
                             topRight: Radius.circular(AppDimensions.radius20))),
                     child: Center(
                         child: BigText(
-                      text: "Siver Slide:",
+                      text: product["title"],
                       size: AppDimensions.font26,
                     )),
                     width: double.maxFinite,
@@ -50,8 +65,8 @@ class _recommendedFoodDetailState extends State<recommendedFoodDetail> {
               backgroundColor: AppColors.yellowColor,
               expandedHeight: 300,
               flexibleSpace: FlexibleSpaceBar(
-                background: Image.asset(
-                  "assets/secondimage.jpg",
+                background: Image.network(
+                  product["image"],
                   width: double.maxFinite,
                   fit: BoxFit.cover,
                 ),
@@ -65,8 +80,7 @@ class _recommendedFoodDetailState extends State<recommendedFoodDetail> {
                         left: AppDimensions.width20,
                         right: AppDimensions.width20),
                     child: ExpandebleTextWidget(
-                        text: "ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnls bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.snigedbofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.snigedsd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged. " +
-                            "ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnls bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.snigedbofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.snigedsd y.sniged ied onionsfresn.noniand dec.cil.Aotc then. PRG.bofled lightlfjfkjkjjfdklj ljbsjklbdsjkld lk mlknsklnlkdsnklnl n nsllkn lnlssd y.sniged."),
+                        text: product["description"].toString()),
                   ),
                 ],
               ),
@@ -91,7 +105,7 @@ class _recommendedFoodDetailState extends State<recommendedFoodDetail> {
                     iconColor: Colors.white,
                     backgroundColor: AppColors.mainColor,
                   ),
-                  BigText(text: "\$12.88" + "X" + "0"),
+                  BigText(text: "\$" + product["price"].toString() + "X" + "0"),
                   AppIcon(
                     iconData: Icons.add,
                     iconColor: Colors.white,
@@ -129,7 +143,9 @@ class _recommendedFoodDetailState extends State<recommendedFoodDetail> {
                               left: AppDimensions.width10,
                               right: AppDimensions.width10),
                           child: BigText(
-                            text: "\$18 Add to cart",
+                            text: "\$" +
+                                product["price"].toString() +
+                                "Add to cart",
                             color: Colors.white,
                           ),
                           decoration: BoxDecoration(
